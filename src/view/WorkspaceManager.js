@@ -224,12 +224,6 @@ define(function (require, exports, module) {
         return new Panel($panel, minSize);
     }
 
-    function hideBottomPanel(id, $panel, minSize) {
-        $panel.hide();
-        
-        return new Panel($panel, minSize);
-    }    
-    
     /**
      * Called when an external widget has appeared and needs some of the space occupied 
      *  by the mainview manager
@@ -266,7 +260,6 @@ define(function (require, exports, module) {
     
     // Define public API
     exports.createBottomPanel    = createBottomPanel;
-    exports.hideBottomPanel      = hideBottomPanel;
     exports.recomputeLayout      = recomputeLayout;
     exports._setMockDOM          = _setMockDOM;
 });

@@ -44,8 +44,6 @@ define(function (require, exports, module) {
         HealthLogger          = require("utils/HealthLogger"),
         _                     = require("thirdparty/lodash"),
         
-        //Resizer               = require("utils/Resizer"),
-        
         searchPanelTemplate   = require("text!htmlContent/search-panel.html"),
         searchResultsTemplate = require("text!htmlContent/search-results.html"),
         searchSummaryTemplate = require("text!htmlContent/search-summary.html");
