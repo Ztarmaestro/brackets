@@ -40,6 +40,7 @@ define(function (require, exports, module) {
     
     var AppInit                 = require("utils/AppInit"),
         EventDispatcher         = require("utils/EventDispatcher"),
+
         Resizer                 = require("utils/Resizer");
     
     
@@ -150,8 +151,7 @@ define(function (require, exports, module) {
             updateResizeLimits();
         });
     }
-    
-    
+
     /**
      * Represents a panel below the editor area (a child of ".content").
      * @constructor
@@ -223,7 +223,12 @@ define(function (require, exports, module) {
         
         return new Panel($panel, minSize);
     }
-    
+
+    function hideBottomPanel(id, $panel, minSize) {
+        $panel.hide();
+        
+        return new Panel($panel, minSize);
+    }    
     
     /**
      * Called when an external widget has appeared and needs some of the space occupied 
@@ -256,12 +261,12 @@ define(function (require, exports, module) {
      * refresh on resize.
      */
     window.addEventListener("resize", handleWindowResize, true);
-    
-    
+
     EventDispatcher.makeEventDispatcher(exports);
     
     // Define public API
     exports.createBottomPanel    = createBottomPanel;
+    exports.hideBottomPanel      = hideBottomPanel;
     exports.recomputeLayout      = recomputeLayout;
     exports._setMockDOM          = _setMockDOM;
 });

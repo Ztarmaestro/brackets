@@ -226,6 +226,15 @@
             "platform": "mac"
         }
     ],
+    "view.hideResultview":  [
+        {   
+            "key" : "Ctrl-Alt-R"
+        },
+        {
+            "key": "Cmd-Shift-R",
+            "platform": "mac"
+        }
+    ],
     "view.increaseFontSize":  [
         {
             "key": "Ctrl-=",

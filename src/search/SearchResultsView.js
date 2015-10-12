@@ -43,11 +43,12 @@ define(function (require, exports, module) {
         Strings               = require("strings"),
         HealthLogger          = require("utils/HealthLogger"),
         _                     = require("thirdparty/lodash"),
-
+        
+        //Resizer               = require("utils/Resizer"),
+        
         searchPanelTemplate   = require("text!htmlContent/search-panel.html"),
         searchResultsTemplate = require("text!htmlContent/search-results.html"),
         searchSummaryTemplate = require("text!htmlContent/search-summary.html");
-
 
     /** 
      * @const 
@@ -74,14 +75,32 @@ define(function (require, exports, module) {
      * @param {string} panelID The CSS ID to use for the panel.
      * @param {string} panelName The name to use for the panel, as passed to PanelManager.createBottomPanel().
      */
+    var panel_State = {}; //GLobal var
+
     function SearchResultsView(model, panelID, panelName) {
         var panelHtml  = Mustache.render(searchPanelTemplate, {panelID: panelID});
-
+        
         this._panel    = WorkspaceManager.createBottomPanel(panelName, $(panelHtml), 100);
         this._$summary = this._panel.$panel.find(".title");
         this._$table   = this._panel.$panel.find(".table-container");
         this._model    = model;
+
+        //panel_State.html = panelHtml;
+        //panel_State.panelName = panelName;
+        panel_State.panel = this; // Add this._panel to global var panel_State
+
     }
+    
+    //Toggles the Search Results Panel
+    function toggle() {
+        //console.log(panel_State); //gives the default message 
+        if (panel_State.panel._panel && panel_State.panel._panel.isVisible()) {
+            panel_State.panel._panel.hide();
+        } else {
+            panel_State.panel._panel.show();
+        }
+    }
+
     EventDispatcher.makeEventDispatcher(SearchResultsView.prototype);
     
     /** @type {SearchModel} The search results model we're viewing. */
@@ -586,7 +605,11 @@ define(function (require, exports, module) {
             this.trigger("close");
         }
     };
-    
+
+    CommandManager.register(Strings.CMD_HIDE_RESULTVIEW, Commands.VIEW_HIDE_RESULTVIEW, toggle);
+
     // Public API
     exports.SearchResultsView = SearchResultsView;
+    exports.toggle            = toggle;
+
 });

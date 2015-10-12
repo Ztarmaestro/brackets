@@ -380,6 +380,7 @@ define({
     "VIEW_MENU"                           : "View",
     "CMD_HIDE_SIDEBAR"                    : "Hide Sidebar",
     "CMD_SHOW_SIDEBAR"                    : "Show Sidebar",
+    "CMD_HIDE_RESULTVIEW"                 : "Hide Resultview",
     "CMD_INCREASE_FONT_SIZE"              : "Increase Font Size",
     "CMD_DECREASE_FONT_SIZE"              : "Decrease Font Size",
     "CMD_RESTORE_FONT_SIZE"               : "Restore Font Size",
